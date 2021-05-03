@@ -1,0 +1,98 @@
+2021-05-03 22:01:50,324 INFO: errors [in C:\Users\khoir\OneDrive\Documents\kuliah\Pengantar Kecerdasan Dasar\Tugas besar 2\tb2-pengantarAI\app.py:35]
+2021-05-03 22:03:37,991 INFO: errors [in C:\Users\khoir\OneDrive\Documents\kuliah\Pengantar Kecerdasan Dasar\Tugas besar 2\tb2-pengantarAI\app.py:35]
+2021-05-03 22:03:40,766 ERROR: Exception on / [GET] [in C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\khoir\OneDrive\Documents\kuliah\Pengantar Kecerdasan Dasar\Tugas besar 2\tb2-pengantarAI\app.py", line 25, in home
+    return render_template('./templates/index.html')
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\loaders.py", line 115, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: ./templates/index.html
+2021-05-03 22:03:41,979 ERROR: Exception on / [GET] [in C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\khoir\OneDrive\Documents\kuliah\Pengantar Kecerdasan Dasar\Tugas besar 2\tb2-pengantarAI\app.py", line 25, in home
+    return render_template('./templates/index.html')
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\loaders.py", line 115, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: ./templates/index.html
+2021-05-03 22:03:42,754 ERROR: Exception on / [GET] [in C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\khoir\OneDrive\Documents\kuliah\Pengantar Kecerdasan Dasar\Tugas besar 2\tb2-pengantarAI\app.py", line 25, in home
+    return render_template('./templates/index.html')
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\jinja2\loaders.py", line 115, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\khoir\AppData\Local\Programs\Python\Python39\lib\site-packages\flask\templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: ./templates/index.html
+2021-05-03 22:04:58,305 INFO: errors [in C:\Users\khoir\OneDrive\Documents\kuliah\Pengantar Kecerdasan Dasar\Tugas besar 2\tb2-pengantarAI\app.py:35]
+2021-05-03 22:05:11,822 INFO: errors [in C:\Users\khoir\OneDrive\Documents\kuliah\Pengantar Kecerdasan Dasar\Tugas besar 2\tb2-pengantarAI\app.py:35]
+2021-05-03 22:05:38,886 INFO: errors [in C:\Users\khoir\OneDrive\Documents\kuliah\Pengantar Kecerdasan Dasar\Tugas besar 2\tb2-pengantarAI\app.py:35]
