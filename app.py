@@ -22,7 +22,7 @@ app.config.from_object('config')
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return 'hilmi'
 
 if not app.debug:
     file_handler = FileHandler('error.log')
