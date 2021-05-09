@@ -2,7 +2,7 @@
 # Imports
 #----------------------------------------------------------------------------#
 
-from flask import Flask, render_template, request, Response
+from flask import Flask, render_template, request, Response, redirect
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
@@ -14,6 +14,7 @@ import numpy as np
 import imutils
 import cv2
 import time
+from werkzeug.utils import secure_filename
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -35,9 +36,28 @@ def home():
 def video():
     return Response(generateFrames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/upload-dataset')
+@app.route('/upload-dataset', methods=['GET', 'POST'])
+def uploadDataset():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        name=request.form['nama']
+        if 'image' not in request.files:
+            print(name)
+            return redirect(request.url)
+        file = request.files['image']
+        if file.filename == '':
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            ext = filename.rsplit('.', 1)[1].lower()
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'],  name + '.' + ext))
+            return redirect(request.url)
     return render_template('inputData.html')
-    
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
 def generateFrames():
     videostream = VideoStream(src=0).start()
     time.sleep(2.0)
