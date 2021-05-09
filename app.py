@@ -35,6 +35,9 @@ def home():
 def video():
     return Response(generateFrames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/upload-dataset')
+    return render_template('inputData.html')
+    
 def generateFrames():
     videostream = VideoStream(src=0).start()
     time.sleep(2.0)
