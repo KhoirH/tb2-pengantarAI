@@ -1,5 +1,7 @@
 from connection.database import conn
 import sqlite3 as sql
+from datetime import date
+
 
 def createHistory(id_anggota):
   try:
@@ -10,11 +12,13 @@ def createHistory(id_anggota):
     conn.rollback()
     msg = "error in insert operation"
 
-def checkHistory(id_anggota):
+def checkHistoryNow(id_anggota):
   try:
     con.row_factory = sql.Row
     cur = conn.cursor()
-    cur.execute("select * from anggota where id=" + id_anggota)
+    today = date.today()
+    d1 = today.strftime("%Y-%m-%d")
+    cur.execute("select * from anggota where id=" + id_anggota + " and date like %" + d1 + "%")
     rows = cur.fetchall()
   except:
     conn.rollback()

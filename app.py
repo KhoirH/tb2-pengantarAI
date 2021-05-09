@@ -66,16 +66,19 @@ def allowed_file(filename):
 def getlist_file(path):
     known_face_encodings = []
     known_face_names = []
-
+    id_list = []
     for filename in glob.glob(path + '/*'): 
         im=filename.replace('\\', '/')
-        name=im.rsplit('/', 1)[1].rsplit('.', 1)[0]
-        known_face_names.append(name)  
+        namefile=im.rsplit('/', 1)[1].rsplit('.', 1)[0]
+        name = name.rsplit('_', 1)[1]
+        id = name.rsplit('_', 1)[0]
+        known_face_names.append(name)
+        id_list.append(id)
         image = face_recognition.load_image_file(im)
         image_face_encoding = face_recognition.face_encodings(image)[0]
         known_face_encodings.append(image_face_encoding)
 
-    return known_face_encodings, known_face_names
+    return known_face_encodings, known_face_names, id_list
 
 def generate_frames():
     videostream = VideoStream(src=0).start()
@@ -98,7 +101,7 @@ def generate_frames():
     #     "Barack Obama",
     #     "Joe Biden"
     # ]
-    (known_face_encodings, known_face_names) = getlist_file(app.config['UPLOAD_FOLDER'])
+    (known_face_encodings, known_face_names, id_list) = getlist_file(app.config['UPLOAD_FOLDER'])
 
     # Initialize some variables
     face_locations = []
@@ -136,7 +139,13 @@ def generate_frames():
                 face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
                 best_match_index = np.argmin(face_distances)
                 if matches[best_match_index]:
+                    id_anggota = id_list[best_match_index]
+                    checkAvaliable = checkHistory(id_anggota)
+                    if len(checkAvaliable) > 0:
+                        createHistory(id_anggota)
                     name = known_face_names[best_match_index]
+
+
 
                 face_names.append(name)
 
