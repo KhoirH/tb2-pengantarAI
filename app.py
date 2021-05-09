@@ -16,6 +16,8 @@ import time
 from werkzeug.utils import secure_filename
 from PIL import Image
 import glob
+from model.anggota import checkLastId, createAnggota
+from model.history import checkHistory, createHistory
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -51,7 +53,9 @@ def uploadDataset():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             ext = filename.rsplit('.', 1)[1].lower()
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'],  name + '.' + ext))
+            createAnggota(name, app.config['UPLOAD_FOLDER'] + "/" + name + '.' + ext)
+            last_data = checkLastId()
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'],  str(last_data[0]) + '_' + name + '.' + ext))
             return redirect(request.url)
     return render_template('inputData.html')
 
