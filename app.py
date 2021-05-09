@@ -8,13 +8,14 @@ import logging
 from logging import Formatter, FileHandler
 import os
 from imutils.video import VideoStream
-from imutils.video import FPS
 import face_recognition
 import numpy as np
 import imutils
 import cv2
 import time
 from werkzeug.utils import secure_filename
+from PIL import Image
+import glob
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -34,7 +35,7 @@ def home():
 
 @app.route('/video')
 def video():
-    return Response(generateFrames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/upload-dataset', methods=['GET', 'POST'])
 def uploadDataset():
@@ -58,27 +59,42 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
-def generateFrames():
+def getlist_file(path):
+    known_face_encodings = []
+    known_face_names = []
+
+    for filename in glob.glob(path + '/*'): 
+        im=filename.replace('\\', '/')
+        name=im.rsplit('/', 1)[1].rsplit('.', 1)[0]
+        known_face_names.append(name)  
+        image = face_recognition.load_image_file(im)
+        image_face_encoding = face_recognition.face_encodings(image)[0]
+        known_face_encodings.append(image_face_encoding)
+
+    return known_face_encodings, known_face_names
+
+def generate_frames():
     videostream = VideoStream(src=0).start()
     time.sleep(2.0)
     
-    # Load a sample picture and learn how to recognize it.
-    obama_image = face_recognition.load_image_file("obama.jpg")
-    obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
-
-    # Load a second sample picture and learn how to recognize it.
-    biden_image = face_recognition.load_image_file("biden.jpg")
-    biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
+    # # Load a sample picture and learn how to recognize it.
+    # obama_image = face_recognition.load_image_file("dataset/obama.jpg")
+    # obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
+    # print(getlist_file(app.config['UPLOAD_FOLDER']))
+    # # Load a second sample picture and learn how to recognize it.
+    # biden_image = face_recognition.load_image_file("dataset/biden.jpg")
+    # biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
 
     # Create arrays of known face encodings and their names
-    known_face_encodings = [
-        obama_face_encoding,
-        biden_face_encoding
-    ]
-    known_face_names = [
-        "Barack Obama",
-        "Joe Biden"
-    ]
+    # known_face_encodings = [
+    #     obama_face_encoding,
+    #     biden_face_encoding
+    # ]
+    # known_face_names = [
+    #     "Barack Obama",
+    #     "Joe Biden"
+    # ]
+    (known_face_encodings, known_face_names) = getlist_file(app.config['UPLOAD_FOLDER'])
 
     # Initialize some variables
     face_locations = []
