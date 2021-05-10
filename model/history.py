@@ -6,20 +6,23 @@ from datetime import date
 def createHistory(id_anggota):
   try:
     cur = conn.cursor()
-    cur.execute("INSERT INTO history(id_anggota) VALUES (?)", (id_anggota) )
+    today = date.today()
+    cur.execute("INSERT INTO history (id_anggota, date) VALUES (?,?)", (id_anggota,today) )
     conn.commit()
   except:
     conn.rollback()
     msg = "error in insert operation"
 
 def checkHistoryNow(id_anggota):
+  rows = []
   try:
-    con.row_factory = sql.Row
     cur = conn.cursor()
+    conn.row_factory = sql.Row
     today = date.today()
     d1 = today.strftime("%Y-%m-%d")
-    cur.execute("select * from anggota where id=" + id_anggota + " and date like %" + d1 + "%")
+    cur.execute("select * from history where id=" + id_anggota + " and date like '%" + d1 + "%'")
     rows = cur.fetchall()
+    id = len(rows)[0]
   except:
     conn.rollback()
     msg = "error in select operation"

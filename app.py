@@ -138,11 +138,12 @@ def generate_frames():
                 face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
                 best_match_index = np.argmin(face_distances)
                 if matches[best_match_index]:
-                    id_anggota = id_list[best_match_index]
-                    checkAvaliable = checkHistoryNow(id_anggota)
-                    if len(checkAvaliable) > 0:
-                        createHistory(id_anggota)
                     name = known_face_names[best_match_index]
+                    if name != "Unknown":
+                        id_anggota = id_list[best_match_index]
+                        checkAvaliable = checkHistoryNow(id_anggota)
+                        if len(checkAvaliable) == 0:
+                            createHistory(id_anggota)
 
 
 
