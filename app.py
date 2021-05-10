@@ -17,7 +17,7 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 import glob
 from model.anggota import checkLastId, createAnggota
-from model.history import checkHistory, createHistory
+from model.history import checkHistoryNow, createHistory
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -45,7 +45,6 @@ def uploadDataset():
         # check if the post request has the file part
         name=request.form['nama']
         if 'image' not in request.files:
-            print(name)
             return redirect(request.url)
         file = request.files['image']
         if file.filename == '':
@@ -70,8 +69,8 @@ def getlist_file(path):
     for filename in glob.glob(path + '/*'): 
         im=filename.replace('\\', '/')
         namefile=im.rsplit('/', 1)[1].rsplit('.', 1)[0]
-        name = name.rsplit('_', 1)[1]
-        id = name.rsplit('_', 1)[0]
+        name = namefile.rsplit('_', 1)[1]
+        id = namefile.rsplit('_', 1)[0]
         known_face_names.append(name)
         id_list.append(id)
         image = face_recognition.load_image_file(im)
@@ -140,7 +139,7 @@ def generate_frames():
                 best_match_index = np.argmin(face_distances)
                 if matches[best_match_index]:
                     id_anggota = id_list[best_match_index]
-                    checkAvaliable = checkHistory(id_anggota)
+                    checkAvaliable = checkHistoryNow(id_anggota)
                     if len(checkAvaliable) > 0:
                         createHistory(id_anggota)
                     name = known_face_names[best_match_index]
