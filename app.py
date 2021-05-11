@@ -144,6 +144,7 @@ def generate_frames():
                         checkAvaliable = checkHistoryNow(id_anggota)
                         if len(checkAvaliable) == 0:
                             createHistory(id_anggota)
+                            break
 
 
 
