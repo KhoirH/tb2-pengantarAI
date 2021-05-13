@@ -139,12 +139,12 @@ def generate_frames():
                 best_match_index = np.argmin(face_distances)
                 if matches[best_match_index]:
                     name = known_face_names[best_match_index]
-                    if name != "Unknown":
-                        id_anggota = id_list[best_match_index]
-                        checkAvaliable = checkHistoryNow(id_anggota)
-                        if len(checkAvaliable) == 0:
-                            createHistory(id_anggota)
-                            break
+                    # if name != "Unknown":
+                    #     id_anggota = id_list[best_match_index]
+                    #     checkAvaliable = checkHistoryNow(id_anggota)
+                    #     if len(checkAvaliable) == 0:
+                    #         createHistory(id_anggota)
+                    #         break
 
 
 
