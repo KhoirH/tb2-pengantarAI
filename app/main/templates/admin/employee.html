@@ -1,0 +1,106 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+  <div class="container-fluid p-0">
+
+    <div class="mb-3">
+      <h1 class="h3 d-inline align-middle">Employee</h1>
+    </div>
+    <div class="row">
+      <div class="col-10">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0">Input</h5>
+          </div>
+          <form action="/admin/employee-create" method="POST" enctype="multipart/form-data">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <label class="form-label">Nama</label>
+                  <input type="text" class="form-control" placeholder="Masukan disini" name="name">
+                </div>
+                <div class="col-4">
+                  <label class="form-label">Foto karyawan</label>
+                  <input type="file" class="form-control" name="file">
+                </div>
+                <div class="col-4">
+                  <label class="form-label">Umur</label>
+                  <input class="form-control" type="number" name="age">
+                </div>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-5">
+                  <label class="form-label">Alamat</label>
+                  <textarea class="form-control" placeholder="Input" name="address"></textarea>
+                </div>
+                <div class="col-2">
+                  <label class="form-label">Jenis Kelamin</label>
+                  <div class="d-flex">
+                    <label class="form-check">
+                      <input class="form-check-input" type="radio" value="pria" name="gender">
+                      <span class="form-check-label">
+                        Pria
+                      </span>
+                    </label>
+                    <div style="width: 10px;"></div>
+                    <label class="form-check">
+                      <input class="form-check-input" type="radio" value="wanita" name="gender">
+                      <span class="form-check-label">
+                        Wanita
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-5 d-flex align-items-end justify-content-end">
+                  <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="d-flex align-items-end justify-content-end">
+          <a class="btn btn-lg btn-primary" href="#data">Lihat Data</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-12" id="data">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Data Karyawan</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Umur</th>
+                <th scope="col">Alamat</th>
+                <th scope="col">Jenis Kelamin</th>
+                <th scope="col">Path</th>
+                <!-- <th scope="col">Aksi</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              {%  for index in range(0, employees|length) %}
+              <tr>
+                <th scope="row">{{ index + 1 }}</th>
+                <td>{{ employees[index].NAME }}</td>
+                <td>{{ employees[index].AGE }}</td>
+                <td>{{ employees[index].ADDRESS }}</td>
+                <td>{{ employees[index].GENDER }}</td>
+                <td>{{ employees[index].PHOTO_EMPLOYEE }}</td>
+                <!-- <td>asas</td> -->
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

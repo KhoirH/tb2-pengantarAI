@@ -39,6 +39,10 @@ def home():
 def video():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/admin/sign')
+def adminSign():
+    return render_template('admin/login.html')
+
 @app.route('/upload-dataset', methods=['GET', 'POST'])
 def uploadDataset():
     if request.method == 'POST':
