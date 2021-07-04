@@ -6,6 +6,7 @@ from .main.controller.category_controller import api as category_ns
 from .main.controller.daliy_activation_controller import api as daliy_activation_ns
 from .main.controller.employee_controller import api as employee_ns
 from .main.controller.activity_controller import api as activity_ns
+from .main.controller.scan_controller import api as scan_ns
 
 blueprint = Blueprint('web', __name__)
 staticBlueprint = Blueprint('css', __name__, static_folder='static', static_url_path='/static')
@@ -32,4 +33,4 @@ api.add_namespace(activity_ns)
 api.add_namespace(daliy_activation_ns)
 api.add_namespace(employee_ns)
 api.add_namespace(category_ns)
-
+api.add_namespace(scan_ns)

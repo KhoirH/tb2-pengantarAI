@@ -18,7 +18,11 @@ def insert_employee(data):
     filename = secure_filename(file.filename)
     ext = filename.rsplit('.', 1)[1].lower()
     last_data = db.session.query(Employee).order_by(Employee.ID_EMPLOYEE.desc()).first()
-    photo_employee = os.path.join('app\main\dataset',  str(last_data.ID_EMPLOYEE + 1) + '.' + ext)
+    number_id = 1
+    if last_data: 
+      number_id = last_data.ID_EMPLOYEE + 1
+    
+    photo_employee = os.path.join('app\main\dataset',  str(number_id) + '.' + ext)
     file.save(photo_employee)
           
     id_admin = resp
