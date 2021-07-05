@@ -36,3 +36,6 @@ def insert_activity(data):
   except Exception as e:
     print(e)
     return False
+
+def get_all_activity(): 
+  return Activity.get_data_join()

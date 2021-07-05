@@ -1,10 +1,38 @@
 {% extends 'admin/base.html' %}
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Register">
-  </form>	
+  <div class="col-12" id="data">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Aktivitas</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nama</th>
+              <th scope="col">Umur</th>
+              <th scope="col">Alamat</th>
+              <th scope="col">Jenis Kelamin</th>
+              <th scope="col">Path</th>
+              <!-- <th scope="col">Aksi</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            {%  for index in range(0, activities|length) %}
+            <tr>
+              <th scope="row">{{ index + 1 }}</th>
+              <td>{{ activities[index].NAME }}</td>
+              <td>{{ activities[index].AGE }}</td>
+              <td>{{ activities[index].ADDRESS }}</td>
+              <td>{{ activities[index].GENDER }}</td>
+              <td>{{ activities[index].PHOTO_EMPLOYEE }}</td>
+              <!-- <td>asas</td> -->
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 {% endblock %}

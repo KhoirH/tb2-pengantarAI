@@ -15,7 +15,6 @@ class Admin(db.Model):
     username = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(100))
 
-
     def check_password(self, password: str) -> bool:
         return flask_bcrypt.check_password_hash(self.password, password)
 

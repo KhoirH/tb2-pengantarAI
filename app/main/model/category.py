@@ -18,6 +18,7 @@ class Category(db.Model):
     END_TIME = db.Column(db.Text, nullable=False)
     ID_ADMIN = db.Column(db.Integer, db.ForeignKey('admin.id_admin'),
         nullable=False)
+    
 
     @staticmethod
     def current_category() :
