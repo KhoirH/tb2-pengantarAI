@@ -1,13 +1,13 @@
 
 from .. import db, flask_bcrypt
-import datetime
+from datetime import datetime
 from app.main.model.blacklist import BlacklistToken
 from ..config import key
 import jwt
 from typing import Union
 
 
-class ACTIVITY(db.Model):
+class Activity(db.Model):
     """ User Model for storing user related details """
     __tablename__ = "ACTIVITY"
 

@@ -10,7 +10,6 @@ class Auth:
         try:
             # fetch the user data
             user = Admin.query.filter_by(username=data.get('username')).first()
-            print(user)
             if user and user.check_password(data.get('password')):
                 auth_token = Admin.encode_auth_token(user.id_admin)
                 if auth_token:

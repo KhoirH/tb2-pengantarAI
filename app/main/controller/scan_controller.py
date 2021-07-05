@@ -1,7 +1,8 @@
-from flask import request, render_template, make_response, Response
+from flask import request, render_template, make_response, Response, flash
 from flask_restx import Resource
 from app.main.service.scan_service import generate_frames
 from app.main.service.employee_service import get_all_employee
+from app.main.service.category_service import status_category
 from ..util.dto import ScanDto
 
 api = ScanDto.api
@@ -10,14 +11,20 @@ api = ScanDto.api
 @api.route('/')
 class ScanView(Resource):
     def get(self):
+        print(status_category())
         headers = {'Content-Type': 'text/html'}
         return make_response(render_template('videostream.html'),200,headers)
-
-
 
 @api.route('/video')
 class VideoView(Resource):
     def get(self): 
-        data = get_all_employee()
-        return Response(generate_frames(data), mimetype='multipart/x-mixed-replace; boundary=frame')
+        employee = get_all_employee()
+        a = generate_frames(employee)
+        return Response(a, mimetype='multipart/x-mixed-replace; boundary=frame')
+        
 
+@api.route('/before-scan')
+class BeforeScanView(Resource):
+    def get(self):
+        headers = {'Content-Type': 'text/html'}
+        return make_response(render_template('starting.html'),200,headers)
