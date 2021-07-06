@@ -10,7 +10,7 @@ from datetime import datetime
 
 class Category(db.Model):
     """ User Model for storing user related details """
-    __tablename__ = "CATEGORY"
+    __tablename__ = "category"
 
     ID_CATEGORY = db.Column(db.Integer, primary_key=True, autoincrement=True)
     NAME = db.Column(db.Text, nullable=False)
@@ -18,6 +18,7 @@ class Category(db.Model):
     END_TIME = db.Column(db.Text, nullable=False)
     ID_ADMIN = db.Column(db.Integer, db.ForeignKey('admin.id_admin'),
         nullable=False)
+    
 
     @staticmethod
     def current_category() :

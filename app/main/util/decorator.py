@@ -30,11 +30,11 @@ def admin_token_required(f: Callable) -> Callable:
         token = data
         
         if not token:
-            return redirect('admin/login')
+            return redirect('login')
 
         admin = token.get('username')
         if not admin:
-            return redirect('admin/login')
+            return redirect('login')
 
         return f(*args, **kwargs)
 

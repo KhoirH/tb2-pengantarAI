@@ -5,8 +5,7 @@ import time
 import cv2
 import face_recognition
 import numpy as np
-from app.main.service.activity_service import insert_activity
-from flask import redirect, flash
+import webbrowser
 
 def getlist_file(data):
     employees = data
@@ -21,7 +20,7 @@ def getlist_file(data):
         known_face_encodings.append(image_face_encoding)
 
     return known_face_encodings, known_face_names, id_list
-
+    
 def generate_frames(data):
     videostream = VideoStream(src=0).start()
     time.sleep(2.0)
@@ -33,7 +32,6 @@ def generate_frames(data):
     face_names = []
     process_this_frame = True
     is_stoped = False
-    print('hilmi')
     while True:
         frame = videostream.read()
         frame = imutils.resize(frame, width=600)
@@ -54,17 +52,13 @@ def generate_frames(data):
                 if matches[best_match_index]:
                     name = known_face_names[best_match_index]
                     if name != "Unknown":
-                        is_stoped = name
-   
-
-
+                        videostream.stop()
+                        webbrowser.open('http://localhost:5000/scan/process-scan?id_employee=' + str(id_list[best_match_index]) + '&name=' + name )
+                        return
    
         process_this_frame = not process_this_frame
 
    
         cv2.imwrite('t.jpg', frame)
-        if not is_stoped: 
-            yield (b'--frame\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')
-        else:
-            yield 'stop'
+        yield (b'--frame\r\n'
+            b'Content-Type: image/jpeg\r\n\r\n' + open('t.jpg', 'rb').read() + b'\r\n')

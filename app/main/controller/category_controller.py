@@ -10,7 +10,7 @@ api = AdminDto.api
 
 
 @api.route('/category')
-class UserList(Resource):
+class CategoryView(Resource):
     @api.doc('admin page')
     @admin_token_required
     # @api.marshal_list_with(_user, envelope='data')
