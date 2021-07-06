@@ -48,7 +48,7 @@
             </a>
 					</li>
 					<li class="sidebar-item {% if url_for(request.endpoint) == '/admin/employee' %}active{% endif %}">
-						<a class="sidebar-link" >
+						<a class="sidebar-link" href="{{ url_for('web.admin_logout') }}">
               <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Logout</span>
             </a>
 					</li>
