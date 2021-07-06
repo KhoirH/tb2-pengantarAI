@@ -11,19 +11,19 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nama</th>
+                <th scope="col">Nama Category</th>
                 <th scope="col">Start Time</th>
                 <th scope="col">End Time</th>
                 <!-- <th scope="col">Aksi</th> -->
               </tr>
             </thead>
             <tbody>
-              {%  for index in range(0, category|length) %}
+              {%  for index in range(0, categories|length) %}
               <tr>
                 <th scope="row">{{ index + 1 }}</th>
-                <td>{{ category[index].NAME }}</td>
-                <td>{{ category[index].START_TIME }}</td>
-                <td>{{ category[index].END_TIME }}</td>
+                <td>{{ categories[index].NAME }}</td>
+                <td>{{ categories[index].START_TIME }}</td>
+                <td>{{ categories[index].END_TIME }}</td>
                 <!-- <td>asas</td> -->
               </tr>
               {% endfor %}
