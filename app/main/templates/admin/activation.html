@@ -10,11 +10,10 @@
           <thead>
             <tr>
               <th scope="col">#</th>
+              <th scope="col">ID Karyawan</th>
               <th scope="col">Nama</th>
-              <th scope="col">Umur</th>
-              <th scope="col">Alamat</th>
-              <th scope="col">Jenis Kelamin</th>
-              <th scope="col">Path</th>
+              <th scope="col">Kategori</th>
+              <th>Jam Masuk</th>
               <!-- <th scope="col">Aksi</th> -->
             </tr>
           </thead>
@@ -22,11 +21,10 @@
             {%  for index in range(0, activities|length) %}
             <tr>
               <th scope="row">{{ index + 1 }}</th>
-              <td>{{ activities[index].NAME }}</td>
-              <td>{{ activities[index].AGE }}</td>
-              <td>{{ activities[index].ADDRESS }}</td>
-              <td>{{ activities[index].GENDER }}</td>
-              <td>{{ activities[index].PHOTO_EMPLOYEE }}</td>
+              <th>{{ activities[index].Employee.ID_EMPLOYEE }}</th>
+              <td>{{ activities[index].Employee.NAME }}</td>
+              <td>{{ activities[index].Category.NAME }}</td>
+              <td>{{ activities[index].Activity.TIME }}</td>
               <!-- <td>asas</td> -->
             </tr>
             {% endfor %}

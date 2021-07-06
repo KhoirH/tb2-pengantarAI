@@ -37,12 +37,11 @@ class UserLogin(Resource):
 
 
 @api.route('/logout')
-class LogoutAPI(Resource):
+class Logout(Resource):
     """
     Logout Resource
     """
-    @api.doc('logout a user')
-    def post(self) -> Tuple[Dict[str, str], int]:
-        # get auth token
-        auth_header = request.headers.get('Authorization')
-        return Auth.logout_user(data=auth_header)
+    # @api.doc('logout a user')
+    def get(self):
+        session.pop('token', None)
+        return redirect('/admin/login')
