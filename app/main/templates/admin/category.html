@@ -1,4 +1,36 @@
 {% extends 'admin/base.html' %}
 {% block content %}
-  ini categori 
+  <div class="container-fluid p-0"> 
+    <div class="col-12" id="data">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Data Categori</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nama Category</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <!-- <th scope="col">Aksi</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              {%  for index in range(0, categories|length) %}
+              <tr>
+                <th scope="row">{{ index + 1 }}</th>
+                <td>{{ categories[index].NAME }}</td>
+                <td>{{ categories[index].START_TIME }}</td>
+                <td>{{ categories[index].END_TIME }}</td>
+                <!-- <td>asas</td> -->
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
