@@ -10,10 +10,10 @@ from typing import Union
 
 class Activity(db.Model):
     """ User Model for storing user related details """
-    __tablename__ = "ACTIVITY"
+    __tablename__ = "activity"
 
     ID_ACTIVITY = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ID_CATEGORY = db.Column(db.Integer, db.ForeignKey('category.id_category'),
+    ID_CATEGORY = db.Column(db.Integer, db.ForeignKey('category.ID_CATEGORY'),
         nullable=False)
     ID_EMPLOYEE = db.Column(db.Integer, db.ForeignKey('employee.ID_EMPLOYEE'),
         nullable=False)

@@ -5,7 +5,7 @@ import time
 import cv2
 import face_recognition
 import numpy as np
-from app.main.service.activity_service import insert_activity
+import webbrowser
 
 def getlist_file(data):
     employees = data
@@ -51,11 +51,10 @@ def generate_frames(data):
                 best_match_index = np.argmin(face_distances)
                 if matches[best_match_index]:
                     name = known_face_names[best_match_index]
-                    # if name != "Unknown":
-                    #     emit('message', {'hello': "Hello"})
-   
-
-
+                    if name != "Unknown":
+                        videostream.stop()
+                        webbrowser.open('http://localhost:5000/scan/process-scan?id_employee=' + str(id_list[best_match_index]) + '&name=' + name )
+                        return
    
         process_this_frame = not process_this_frame
 
